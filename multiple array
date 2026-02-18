@@ -1,0 +1,177 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 100
+int stack[MAX], top1=-1,top2=MAX;
+
+void push_stack1(int value){
+    if (top1 == top2-1)
+    printf("Stack-1 overflow. Cannot push element in stack-1\n");
+    else{
+        stack[++top1] = value;
+        printf("\nPushed %d into stack-1.\n");
+    }
+}
+void push_stack2(int value){
+    if(top1 == top2-1){
+        printf("\nstack-2 overflow. Cannot push element on stack-2\n");
+    }
+        else{
+            int val= stack[top1];
+            top1--;
+            return val;
+        }
+    
+
+}
+
+        
+
+int pop_stack1(){
+    if (top1 == -1){
+        printf("\nstack-1 underflow. Canot pop from empty stack\n");
+        return -1;
+    }
+    else{
+        int val =stack[top1];
+        top1--;
+        return val;
+    }
+}
+int pop_stack(){
+    if(top2 == MAX){
+        printf("\nstack-2 underflow. Cannot pop from empty stack\n");
+        return -1;
+    }
+    else{
+        int val = stack[top2];
+        top2++;
+        return val;
+    }
+}
+int peek_stack1(){
+    if (top1 == -1){
+        printf("\nstack-1 underflow. Canot peek from empty stack\n");
+        return -1;
+    }
+    else{
+        int val =stack[top1];
+        top1--;
+        return val;
+    }
+}
+int peek_stack(){
+    if(top2 == MAX){
+        printf("\nstack-2 underflow. Cannot peek from empty stack\n");
+        return -1;
+    }
+    else{
+        int val = stack[top2];
+        top2++;
+        return val;
+    }
+}
+void display_stack1(){
+    if(top1 == -1)
+    printf("\nStack-1 is empty\n");
+    else{
+        for(int i=top1; i>=0; i--);{
+            printf("\t%d\n", stack[i]);
+        }
+    }
+}
+void display_stack2(){
+    if(top2 == MAX)
+    printf("\nStack-2 is empty\n");
+    else{
+        for(int i=top2; i<MAX; i++);{
+            printf("\t%d\n", stack[i]);
+        }
+    }
+}
+
+    int main(){
+        int choice,val,res,num;
+        while(1){
+            printf("1.Push\n");
+            printf("2.Pop\n");
+            printf("3.Peek\n");
+            printf("4.Display stack-1\n");
+            printf("5.Display stack-2\n");
+            printf("6.Exit\n");
+            printf("Enter choice: ");
+            scanf("%d",&choice);
+            switch(choice){
+                case 1:
+                printf("Enter stack number(1-2): ");
+                scanf("%d",&num);
+                printf("Enter Value: ");
+                scanf("%d", &val);
+                if (num == 1)
+                push_stackl(val);
+                else if(num == 2)
+                push_stack2(val);
+                else
+                printf("\nInvalid stack number\n");
+            break;
+
+                case 2:
+                printf("Enter stack number(1-2): ");
+                scanf("%d", &num);
+                if(num == 1){
+                   res = pop_stack1();
+                   if(res != -1)
+                    printf("\n%d pop from stack-1\n");
+                }
+                else if(num == 2){
+                    res = pop_stack();
+                     if(res != -1)
+                    printf("\n%d pop from stack-2\n");
+                }
+                else
+                 printf("\nInvalid stack number\n");
+                 break;
+
+                 case 3:
+                printf("Enter stack number(1-2): ");
+                scanf("%d", &num);
+                if(num == 1){
+                   res = peek_stack1();
+                   if(res != -1)
+                    printf("\n%d available at the top from stack-1\n");
+                }
+                else if(num == 2){
+                    res = peek_stack();
+                     if(res != -1)
+                      printf("\n%d available at the top from stack-2\n");
+            
+                }
+                else
+                 printf("\nInvalid stack number\n");
+
+                break;
+
+                case 4:
+                display_stack1();
+
+                break;
+                case 5:
+                display_stack2();
+                break;
+                case 6:
+                exit(0);
+
+               
+                 
+                break;
+
+                default:
+                printf("\nInvalid choice!!\n");
+            }
+            printf("\n");
+
+        }
+        return 0;
+    }
+
+
+

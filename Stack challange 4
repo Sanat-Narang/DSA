@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+# define max 1000
+int stack1[max] ,  top1 = -1;
+int stack2[max] ,  top2 = -1;
+int n1 , n2;
+void push(int s, int x);
+void pop(int s);
+void display(int s);
+void peek(int s);
+
+int main() {
+    int q;
+    scanf("%d %d", &n1, &n2);
+    scanf("%d",&q);
+    while(q--){
+        char op [20];
+        scanf("%s",op);
+        int s,x;
+        if(strcmp(op , "PUSH")==0){
+            scanf("%d %d",&s , &x);
+            push(s,x);
+        }
+         else if(strcmp(op , "POP")==0){
+             scanf("%d",&s);
+             pop(s);
+             
+         }
+        else if(strcmp(op, "PEEK")==0){
+            scanf("%d",&s);
+            peek(s);
+            
+        }
+        else if(strcmp(op , "DISPLAY")==0){
+            scanf("%d",&s);
+            display(s);
+        }
+    }
+    
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}
+void push(int s, int x){
+    if(s==1){
+        if(top1 == n1 - 1){
+            printf("Overflow\n");
+            return;
+        }
+        stack1[++top1] = x;
+        
+    }
+    else if(s==2){
+        if(top2 == n2 - 1){
+            printf("Overflow\n");
+            return;
+        }
+        stack2[++top2] = x;
+        
+    }
+        
+    
+}
+
+void peek(int s){
+    if(s==1){
+        if(top1 == -1){
+            printf("Underflow\n");
+            return;
+        }
+        printf("%d\n",stack1[top1]);
+    }
+    else if(s==2){
+        if(top2 == -1){
+            printf("Underflow\n");
+            return;
+        }
+        printf("%d\n",stack2[top2]);
+    }
+    
+}
+void pop(int s){
+    if(s==1){
+        if(top1 == -1){
+            printf("Underflow\n");
+            return;
+        }
+        int value = stack1[top1--];
+        printf("%d\n",value);
+        
+        
+    }
+    else if(s==2){
+        if(top2 == -1){
+            printf("Underflow\n");
+            return;
+        }
+        int value = stack2[top2--];
+        printf("%d\n",value);
+    }
+    
+}
+void display(int s){
+    if(s==1){
+        if(top1 == -1){
+            printf("Empty\n");
+            return;
+        }
+        for(int i = top1 ; i>= 0 ; i--)
+            printf("%d ",stack1[i]);
+        printf("\n");
+        
+        
+    }
+    else if(s==2){
+        if(top2 == -1){
+            printf("Empty\n");
+            return;
+        }
+        for(int i = top2 ; i>= 0 ; i--)
+            printf("%d ",stack2[i]);
+        printf("\n");
+    }
+        
+    
+        
+    }
